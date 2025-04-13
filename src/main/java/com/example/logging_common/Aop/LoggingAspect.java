@@ -15,7 +15,7 @@ public class LoggingAspect {
     private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
     public LoggingAspect() {
-        System.out.println(">>> LoggingAspect initialized");
+        System.out.println(">>> LoggingAspect initialized check");
     }
 
     @Pointcut("within(@org.springframework.web.bind.annotation.RestController *) || within(@org.springframework.stereotype.Service *) || within(@org.springframework.stereotype.Repository *)")
