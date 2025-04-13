@@ -18,7 +18,7 @@ public class LoggingAspect {
         System.out.println(">>> LoggingAspect initialized");
     }
 
-    @Pointcut("within(@org.springframework.stereotype.Service *) || within(@org.springframework.web.bind.annotation.RestController *)")
+    @Pointcut("within(@org.springframework.web.bind.annotation.RestController *) || within(@org.springframework.stereotype.Service *) || within(@org.springframework.stereotype.Repository *)")
     public void loggableMethods() {}
 
     @Before("loggableMethods()")
@@ -27,10 +27,10 @@ public class LoggingAspect {
         logger.info("➡️ [{}] Executing method: {}", correlationId, joinPoint.getSignature());
     }
 
-    @AfterReturning(pointcut = "loggableMethods()", returning = "result")
-    public void logAfter(JoinPoint joinPoint, Object result) {
+    @AfterReturning(pointcut = "loggableMethods()")
+    public void logAfter(JoinPoint joinPoint) {
         String correlationId = MDC.get(CorrelationIdFilter.CORRELATION_ID_HEADER);
-        logger.info("✅ [{}] Completed method: {} → {}", correlationId, joinPoint.getSignature(), result);
+        logger.info("✅ [{}] Completed method: {} → {}", correlationId, joinPoint.getSignature());
     }
 
     @AfterThrowing(pointcut = "loggableMethods()", throwing = "ex")
