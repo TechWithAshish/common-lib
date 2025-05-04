@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 import java.util.UUID;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class CartKafkaDto {
-//    private UUID cardId; need to decide on this field whether to take or not....
-    private String userEmail;
+public class OrderKafkaDto {
+    private UUID orderId;
     private List<ProductKafkaDto> productList;
     private Double totalAmount;
 }

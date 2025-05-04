@@ -11,9 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @Builder
-public class ProductKafkaDto {
-    private UUID productId;
-    private UUID sellerId;
-    private Integer quantity;
-    private Double pricePerQuantity;
+public class InventoryKafkaFailedDto {
+    private UUID orderId;
+    private String reasonOfFailure;
 }
